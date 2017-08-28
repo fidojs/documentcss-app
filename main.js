@@ -150,33 +150,60 @@ function createWindow () {
       fse.copySync(path.join(__dirname, 'lsg-starter'), projectPath);
     }
 
-    // Startup server.
-    const server = require("./server")(projectPath)
-    server.startup()
-
-    const {width, height} = electron.screen.getPrimaryDisplay().workAreaSize
-
-    // Create the browser window.
-    mainWindow = new BrowserWindow({
-      width: width,
-      height: height
+    prompt({
+        title: 'Distributable Directory',
+        label: "Cancel to use bit-docs.dest of package.json",
+        value: 'doc'
     })
+    .then((distDirectory) => {
+      // getDistPath helper function
+      const getDistPath = (appRoot, appPackageJSON) => {
+        if (distDirectory == null) {
+          if (appPackageJSON['bit-docs'].hasOwnProperty('dest')) {
+            return path.join(appRoot, appPackageJSON['bit-docs']['dest'])
+          } else {
+            return path.join(appRoot, 'doc')
+          }
+        } else {
+          return path.join(appRoot, distDirectory)
+        }
+      }
 
-    // and load the index.html of the app.
-    mainWindow.loadURL('http://localhost:3000/console-app')
+      prompt({
+          title: 'Build Command',
+          label: "npm run <command>",
+          value: 'generate'
+      })
+      .then((buildCommand) => {
+        // Startup server.
+        const server = require("./server")(projectPath, getDistPath, buildCommand)
+        server.startup()
 
-    // Open the DevTools.
-    // mainWindow.webContents.openDevTools()
+        const {width, height} = electron.screen.getPrimaryDisplay().workAreaSize
 
-    // Emitted when the window is closed.
-    mainWindow.on('closed', function () {
-      // Dereference the window object, usually you would store windows
-      // in an array if your app supports multi windows, this is the time
-      // when you should delete the corresponding element.
-      mainWindow = null
-    })
-  })
-  .catch(console.error);
+        // Create the browser window.
+        mainWindow = new BrowserWindow({
+          width: width,
+          height: height
+        })
+
+        // and load the index.html of the app.
+        mainWindow.loadURL('http://localhost:3000/console-app')
+
+        // Open the DevTools.
+        // mainWindow.webContents.openDevTools()
+
+        // Emitted when the window is closed.
+        mainWindow.on('closed', function () {
+          // Dereference the window object, usually you would store windows
+          // in an array if your app supports multi windows, this is the time
+          // when you should delete the corresponding element.
+          mainWindow = null
+        })
+      })
+      .catch(console.error);
+    });
+  });
 }
 
 // This method will be called when Electron has finished

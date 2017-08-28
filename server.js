@@ -3,15 +3,11 @@ const { GlitchPlease } = require('glitch-please');
 const path = require('path');
 const fs = require('fs');
 
-module.exports = function(appRoot) {
+module.exports = function(appRoot, getDistPath, buildCommand) {
   const please = new GlitchPlease({
     appRoot: appRoot, 
     distPath (appRoot, appPackageJSON) {
-      if (appPackageJSON['bit-docs'].hasOwnProperty('dest')) {
-        return path.join(appRoot, appPackageJSON['bit-docs']['dest']);
-      } else {
-        return path.join(appRoot, 'doc');
-      }
+      return getDistPath(appRoot, appPackageJSON);
     },
     distRoute (appPackageJSON) {
         return '/';
@@ -23,7 +19,7 @@ module.exports = function(appRoot) {
     return [appPackageJSON['bit-docs']['glob']['pattern']];
   }, {
     cmd: 'npm',
-    args: ['run', 'generate']
+    args: ['run', buildCommand]
   });
 
   please.server.use('/console-app', consoleApp);
