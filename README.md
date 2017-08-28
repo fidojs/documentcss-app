@@ -1,8 +1,8 @@
 # documentCSS.app
 
-Looking for the `.dmg` download?
+Your faithful companion for editing Live Style Guides.
 
-See [How to Download](https://github.com/fidojs/documentcss-app/wiki/How-to-Download).
+Looking for the `.dmg` download? [How to Download](https://github.com/fidojs/documentcss-app/wiki/How-to-Download).
 
 ## About Electron
 
@@ -15,6 +15,8 @@ A basic Electron application needs just these files:
 You can learn more about each of these components within the [Quick Start Guide](http://electron.atom.io/docs/tutorial/quick-start).
 
 ## Quick Start
+
+Do these things to build from source:
 
 ```console
 $ git clone
