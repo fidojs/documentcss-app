@@ -14,7 +14,7 @@ module.exports = function(appRoot) {
       }
     },
     distRoute (appPackageJSON) {
-        return '/out';
+        return '/';
     }
   });
 
@@ -26,7 +26,7 @@ module.exports = function(appRoot) {
     args: ['run', 'generate']
   });
 
-  please.server.use('/', consoleApp);
+  please.server.use('/console-app', consoleApp);
 
   return please;
 }
