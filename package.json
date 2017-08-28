@@ -1,6 +1,6 @@
 {
   "name": "documentCSS",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "Electron application for <document/>CSS",
   "keywords": [
     "Electron",
