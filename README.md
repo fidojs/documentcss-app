@@ -1,5 +1,11 @@
 # documentCSS.app
 
+Looking for the `.dmg` download?
+
+See [How to Download](https://github.com/fidojs/documentcss-app/wiki/How-to-Download).
+
+## About Electron
+
 A basic Electron application needs just these files:
 
 - `package.json` - Points to the app's main file and lists its details and dependencies.
