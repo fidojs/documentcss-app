@@ -14,7 +14,8 @@ You can learn more about each of these components within the [Quick Start Guide]
 $ git clone
 $ npm install
 $ npm start
-$ npm dist
+$ npm run dist
+$ open ./dist
 ```
 
 ## Notes
