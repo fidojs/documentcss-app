@@ -12,9 +12,9 @@ You can learn more about each of these components within the [Quick Start Guide]
 
 ```console
 $ git clone
-$ npm install
+$ yarn install
 $ npm start
-$ npm run dist
+$ yarn dist
 $ open ./dist
 ```
 
