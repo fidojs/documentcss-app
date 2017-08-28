@@ -1,16 +1,5 @@
-const {app, BrowserWindow, Menu, protocol, ipcMain} = require('electron');
-const log = require('electron-log');
+const {app, BrowserWindow, Menu, protocol, ipcMain} = electron = require('electron');
 const {autoUpdater} = require("electron-updater");
-
-//-------------------------------------------------------------------
-// Logging
-//
-// This logging setup is not required for auto-updates to work,
-// but it sure makes debugging easier :)
-//-------------------------------------------------------------------
-autoUpdater.logger = log;
-autoUpdater.logger.transports.file.level = 'info';
-log.info('App starting...');
 
 //-------------------------------------------------------------------
 // Define the menu
@@ -45,18 +34,18 @@ if (process.platform === 'darwin') {
 let win;
 
 function sendStatusToWindow(text) {
-  log.info(text);
-  win.webContents.send('message', text);
+  console.log('sendStatusToWindow', text);
+  //win.webContents.send('message', text);
 }
-function createDefaultWindow() {
-  win = new BrowserWindow();
-  win.webContents.openDevTools();
-  win.on('closed', () => {
-    win = null;
-  });
-  win.loadURL(`file://${__dirname}/version.html#v${app.getVersion()}`);
-  return win;
-}
+//function createDefaultWindow() {
+//  win = new BrowserWindow();
+//  //win.webContents.openDevTools();
+//  win.on('closed', () => {
+//    win = null;
+//  });
+//  win.loadURL(`file://${__dirname}/version.html#v${app.getVersion()}`);
+//  return win;
+//}
 autoUpdater.on('checking-for-update', () => {
   sendStatusToWindow('Checking for update...');
 })
@@ -82,11 +71,6 @@ app.on('ready', function() {
   // Create the Menu
   const menu = Menu.buildFromTemplate(template);
   Menu.setApplicationMenu(menu);
-
-  createDefaultWindow();
-});
-app.on('window-all-closed', () => {
-  app.quit();
 });
 
 //-------------------------------------------------------------------
