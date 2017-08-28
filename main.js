@@ -1,4 +1,4 @@
-const {app, BrowserWindow, Menu, protocol, ipcMain} = electron = require('electron');
+const {app, BrowserWindow, dialog, Menu, protocol, ipcMain} = electron = require('electron');
 const {autoUpdater} = require("electron-updater");
 
 //-------------------------------------------------------------------
@@ -98,9 +98,12 @@ autoUpdater.on('update-downloaded', (info) => {
   // Wait 5 seconds, then quit and install
   // In your application, you don't need to wait 5 seconds.
   // You could call autoUpdater.quitAndInstall(); immediately
-  setTimeout(function() {
-    autoUpdater.quitAndInstall();  
-  }, 5000)
+  dialog.showMessageBox({
+    type: 'warning',
+    message: 'Update available! Application will restart!'
+  }, () => {
+    autoUpdater.quitAndInstall();
+  });
 })
 
 app.on('ready', function()  {
