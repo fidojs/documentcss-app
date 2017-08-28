@@ -1,0 +1,45 @@
+{
+  "name": "documentCSS",
+  "version": "0.1.0",
+  "description": "Electron application for <document/>CSS",
+  "keywords": [
+    "Electron",
+    "demo",
+    "quick",
+    "start",
+    "tutorial"
+  ],
+  "license": "MIT",
+  "author": "Bitovi",
+  "main": "main.js",
+  "repository": "https://github.com/documentcss/documentcss-app",
+  "scripts": {
+    "dist": "electron-builder",
+    "inspect": "electron --debug-brk --inspect .",
+    "pack": "electron-builder --dir",
+    "start": "electron ."
+  },
+  "dependencies": {
+    "@fidojs/fidojs-kennel-console": "0.2.5-0",
+    "electron-prompt": "^0.3.0",
+    "express": "^4.15.4",
+    "fix-path": "^2.1.0",
+    "fs-extra": "^4.0.1",
+    "glitch-please": "file:/Users/leoj/bitovi/,+/fd/glitch-please",
+    "portfinder": "^1.0.13"
+  },
+  "devDependencies": {
+    "electron": "~1.6.2",
+    "electron-builder": "^19.24.1"
+  },
+  "build": {
+    "appId": "com.documentcss.app",
+    "mac": {
+      "category": "public.app-category.developer-tools"
+    },
+    "directories": {
+      "buildResources": "build-resources"
+    },
+    "asar": true
+  }
+}

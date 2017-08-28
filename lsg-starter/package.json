@@ -1,0 +1,31 @@
+{
+  "name": "lsg-starter",
+  "version": "1.0.0",
+  "description": "Starter live style guide for use with <document/>CSS",
+  "main": "index.js",
+  "scripts": {
+    "generate": "bit-docs -d",
+    "clean-dest": "rm -rf ${npm_package_bit_docs_dest:-./doc}",
+    "cache-bust": "rm -rf ./node_modules/bit-docs/lib/configure/node_modules/bit-docs-generate-html/site/{static,templates} && npm run clean-dest && npm run fido",
+    "force-build": "bit-docs -fd",
+    "postinstall": "npm run generate"
+  },
+  "devDependencies": {
+    "bit-docs": "bit-docs/bit-docs"
+  },
+  "bit-docs": {
+    "dependencies": {
+      "bit-docs-glob-finder": "bit-docs/bit-docs-glob-finder",
+      "bit-docs-dev": "bit-docs/bit-docs-dev",
+      "bit-docs-generate-html": "bit-docs/bit-docs-generate-html",
+      "bit-docs-js": "bit-docs/bit-docs-js",
+      "bit-docs-prettify": "bit-docs/bit-docs-prettify"
+    },
+    "glob": {
+      "pattern": "lsg/**/*.{less,md}"
+    },
+    "parent": "lsg",
+    "minifyBuild": false,
+    "dest": "out"
+  }
+}
