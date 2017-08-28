@@ -6,7 +6,7 @@
   "scripts": {
     "generate": "bit-docs -d",
     "clean-dest": "rm -rf ${npm_package_bit_docs_dest:-./doc}",
-    "cache-bust": "rm -rf ./node_modules/bit-docs/lib/configure/node_modules/bit-docs-generate-html/site/{static,templates} && npm run clean-dest && npm run fido",
+    "cache-bust": "rm -rf ./node_modules/bit-docs/lib/configure/node_modules/bit-docs-generate-html/site/{static,templates} && npm run clean-dest && npm run generate",
     "force-build": "bit-docs -fd",
     "postinstall": "npm run generate"
   },
